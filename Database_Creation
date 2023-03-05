@@ -1,0 +1,63 @@
+to create the tables use the folling queries:
+
+1) to create the table employee
+
+CREATE TABLE employee(
+ENo int
+, e_name char(20)
+, Qualification char(20)
+, joining_date date
+, P_Id int);
+
+2) to insert values into the table employee
+
+INSERT INTO employee (ENo, e_name, Qualification, joining_date, P_Id)
+VALUES 
+  (1, 'John', 'MBA', '2020-01-01', 101),
+  (2, 'Emily', 'B.Tech', '2019-03-15', 102),
+  (3, 'Michael', 'PhD', '2022-02-28', 103),
+  (4, 'Sophia', 'MCA', '2021-07-20', 104),
+  (5, 'William', 'BE', '2018-05-10', 105),
+  (6, 'Emma', 'BA', '2022-01-10', 106),
+  (7, 'Oliver', 'M.Tech', '2017-11-22', 107),
+  (8, 'Ava', 'MS', '2020-09-01', 108),
+  (9, 'James', 'B.Sc', '2022-03-05', 109),
+  (10, 'Isabella', 'MA', '2021-06-30', 110);
+
+3) to create the table for projects
+CREATE TABLE projects (
+  PNO int,
+  P_name char(20),
+  Ptype char(20),
+  duration int,
+  P_Id int
+);
+
+4) to add a column that connects the table employee and projects
+ALTER TABLE projects ADD FOREIGN KEY (P_Id) REFERENCES employee(P_Id);
+
+5) to insert values into the table projects
+
+INSERT INTO projects (PNO, P_name, Ptype, duration, P_Id)
+SELECT 
+    1, 'Project A', 'Type 1', 30, P_Id FROM employee WHERE ENo = 1
+UNION ALL
+SELECT 
+    2, 'Project B', 'Type 2', 45, P_Id FROM employee WHERE ENo = 2
+UNION ALL
+SELECT 
+    3, 'Project C', 'Type 1', 60, P_Id FROM employee WHERE ENo = 3;
+UNION ALL
+SELECT 
+    4, 'Project D', 'Type 3', 60, P_Id FROM employee WHERE ENo IN (2, 3)
+UNION ALL
+SELECT 
+    5, 'Project E', 'Type 1', 45, P_Id FROM employee WHERE ENo IN (1, 4);
+
+please run the queries according to the questions given in the question set
+
+
+
+
+
+
